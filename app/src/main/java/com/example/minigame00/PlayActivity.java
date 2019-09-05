@@ -1,5 +1,7 @@
 package com.example.minigame00;
 
+import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.util.Log;
@@ -7,6 +9,7 @@ import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -319,13 +322,22 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
                 Log.d("Enter Key", "Result: " + isPinCorrect);
 
+                int attemptCount = 5;
+
                 if (!isPinCorrect) {
 
-                    Toast.makeText(PlayActivity.this,"Wrong Combination",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PlayActivity.this, "Wrong, Remaining attempts = " + attemptCount, Toast.LENGTH_SHORT).show();
+                    attemptCount--;
+
+                    if (attemptCount == 0) {
+
+                        displaFDialog();
+
+                    }
 
                 } else {
 
-                    Toast.makeText(PlayActivity.this,"Right Combination",Toast.LENGTH_SHORT).show();
+                    displayDialog();
 
                 }
                 */
@@ -375,6 +387,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+<<<<<<< HEAD
     //Compare answer to passcode
     private int[][] checkPassCodeInput()
     {
@@ -429,6 +442,75 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     /*
+=======
+    //Failed Dialog Fragment
+    private void displaFDialog() {
+
+        Dialog dialog = new Dialog(PlayActivity.this);
+
+        dialog.setContentView(R.layout.menudialog);
+
+        ImageButton contGame = dialog.findViewById(R.id.continueGame);
+        ImageButton extGame = dialog.findViewById(R.id.exitGame);
+
+        contGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+                startActivity(getIntent());
+
+            }
+        });
+
+        extGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(PlayActivity.this, MainMenuActivity.class);
+                PlayActivity.this.startActivity(intent);
+
+            }
+        });
+
+    }
+
+    //Success Dialog Fragment
+    private void displayDialog() {
+
+        Dialog dialog = new Dialog(PlayActivity.this);
+
+        dialog.setContentView(R.layout.menudialog);
+
+        ImageButton contGame = dialog.findViewById(R.id.continueGame);
+        ImageButton extGame = dialog.findViewById(R.id.exitGame);
+
+        contGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                finish();
+                startActivity(getIntent());
+
+            }
+        });
+
+        extGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(PlayActivity.this, MainMenuActivity.class);
+                PlayActivity.this.startActivity(intent);
+
+            }
+        });
+
+        dialog.show();
+
+    }
+
+
+>>>>>>> bb1f6bee8c65a038dd41bad5fd956be683b65548
     private boolean checkPassCodeInput() {
 
         int checkPassCodeCount;

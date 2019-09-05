@@ -25,6 +25,8 @@
 
     <string name="enter">Entr</string>
     <string name="dummy">dummy</string>
+    <string name="congratulations">CONGRATULATIONS</string>
+    <string name="game_over">GAME OVER</string>
 
 
 </resources>
