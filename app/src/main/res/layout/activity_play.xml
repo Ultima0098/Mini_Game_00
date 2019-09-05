@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".PlayActivity">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="55sp"
+        android:progressDrawable="@drawable/circularprogressbar" />
+
+    <TextView
+        android:id="@+id/tv_timer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="114sp"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/pinResults"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/progressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16sp"
+        android:text="@string/text_desc"
+        android:textSize="16sp" />
+
+    <GridLayout
+        android:id="@+id/passcodeLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/pinResults"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12sp"
+        android:columnCount="4"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/pin1"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/code_border"
+            android:enabled="true"
+            android:inputType="number"
+            android:labelFor="@+id/pin1"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/pin2"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/code_border"
+            android:enabled="true"
+            android:inputType="number"
+            android:labelFor="@+id/pin2"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/pin3"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/code_border"
+            android:enabled="true"
+            android:inputType="number"
+            android:labelFor="@+id/pin3"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+        <EditText
+            android:id="@+id/pin4"
+            android:layout_width="60sp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/code_border"
+            android:enabled="true"
+            android:inputType="number"
+            android:labelFor="@+id/pin4"
+            android:maxLength="1"
+            android:textAlignment="center"
+            android:textSize="24sp" />
+
+    </GridLayout>
+
+    <TextView
+        android:id="@+id/passCodeTestView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passcodeLayout"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="96sp"
+        android:layout_marginTop="25sp"
+        android:text="@string/text_desc"
+        android:textSize="16sp" />
+
+    <GridLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/passCodeTestView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12sp"
+        android:columnCount="3"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/key1"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_button_background"
+            android:text="@string/_1"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/key2"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_button_background"
+            android:text="@string/_2"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/key3"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_button_background"
+            android:text="@string/_3"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/key4"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_button_background"
+            android:text="@string/_4"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/key5"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_button_background"
+            android:text="@string/_5"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/key6"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_button_background"
+            android:text="@string/_6"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/key7"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_button_background"
+            android:text="@string/_7"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/key8"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_button_background"
+            android:text="@string/_8"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/key9"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_button_background"
+            android:text="@string/_9"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/keyClear"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_clear_background"
+            android:text="@string/clear"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/key0"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_button_background"
+            android:text="@string/_0"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+        <Button
+            android:id="@+id/keyEnter"
+            android:layout_width="70sp"
+            android:layout_height="70sp"
+            android:layout_margin="4sp"
+            android:background="@drawable/key_enter_background"
+            android:text="@string/enter"
+            android:textColor="@color/colorWhite"
+            android:textSize="24sp" />
+
+    </GridLayout>
+
+</RelativeLayout>
