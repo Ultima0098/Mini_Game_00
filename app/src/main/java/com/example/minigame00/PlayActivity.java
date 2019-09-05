@@ -346,7 +346,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    //Failed Dialog
+    //Failed Dialog Fragment
     private void displaFDialog() {
 
         Dialog dialog = new Dialog(PlayActivity.this);
@@ -378,7 +378,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    //Success Dialog
+    //Success Dialog Fragment
     private void displayDialog() {
 
         Dialog dialog = new Dialog(PlayActivity.this);
