@@ -24,17 +24,17 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     int progress;
     int myProgress = 0;
     int endTime = 250;
+    int attemptCount;
 
     private int[] gamePassCode;
 
     private EditText[] pinEditTextArray;
-    private TextView passCodeTestView;
 
     Button key01, key02, key03, key04, key05, key06, key07, key08, key09, key00, keyenter, keyclear;
     CountDownTimer countDownTimer;
     EditText pin01, pin02, pin03, pin04;
     ProgressBar progressBar;
-    TextView textViewTime;
+    TextView textViewTime, attemptCounter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +42,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_play);
 
         //passCodeTestView = findViewById(R.id.passCodeTestView);
+        setAttemptCount(6);
 
         pin01 = findViewById(R.id.pin1);
         pin02 = findViewById(R.id.pin2);
@@ -65,6 +66,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
         progressBar = findViewById(R.id.progressBar);
         textViewTime = findViewById(R.id.tv_timer);
+        attemptCounter = findViewById(R.id.attemptCounter);
 
         RotateAnimation makeVertical = new RotateAnimation(0, -90, RELATIVE_TO_SELF, 0.5f, RELATIVE_TO_SELF, 0.5f);
         makeVertical.setFillAfter(true);
@@ -318,10 +320,17 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 //Check if answer is correct
                 int[][] answerResultsArray = checkPassCodeInput();
                 String resultStatement = "";
+                boolean isFailedAttempt = false;
 
                 for (int resultCount = 0; resultCount < answerResultsArray.length; resultCount++) {
 
                     String resultString = "";
+
+                    if(answerResultsArray[0][resultCount] != 0){
+
+                        isFailedAttempt = true;
+
+                    }
 
                     switch (answerResultsArray[0][resultCount]) {
 
@@ -346,6 +355,13 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     }
 
                     resultStatement = resultStatement + "" + answerResultsArray[1][resultCount] + " : " + resultString + "\n";
+
+                }
+
+                if(isFailedAttempt)
+                {
+
+                    setAttemptCount(attemptCount--);
 
                 }
 
@@ -584,6 +600,15 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         progressBar.setMax(endTime);
         progressBar.setSecondaryProgress(endTime);
         progressBar.setProgress(startTime);
+
+    }
+
+    private void setAttemptCount(int amount)
+    {
+
+        attemptCount = amount;
+
+        attemptCounter.setText("Amount: " + amount);
 
     }
 
