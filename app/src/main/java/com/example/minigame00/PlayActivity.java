@@ -387,7 +387,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-<<<<<<< HEAD
+
     //Compare answer to passcode
     private int[][] checkPassCodeInput()
     {
@@ -441,8 +441,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    /*
-=======
+
     //Failed Dialog Fragment
     private void displaFDialog() {
 
@@ -510,7 +509,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     }
 
 
->>>>>>> bb1f6bee8c65a038dd41bad5fd956be683b65548
+    /*
     private boolean checkPassCodeInput() {
 
         int checkPassCodeCount;
