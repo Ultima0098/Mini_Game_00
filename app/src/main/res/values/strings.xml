@@ -27,6 +27,7 @@
     <string name="dummy">dummy</string>
     <string name="congratulations">CONGRATULATIONS</string>
     <string name="game_over">GAME OVER</string>
+    <string name="attempts">Attempts:</string>
 
 
 </resources>

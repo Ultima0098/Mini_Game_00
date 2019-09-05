@@ -4,7 +4,6 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.RotateAnimation;
 import android.widget.Button;
@@ -16,7 +15,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Arrays;
 import java.util.Random;
 
 import static android.view.animation.Animation.RELATIVE_TO_SELF;
@@ -43,7 +41,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play);
 
-        passCodeTestView = findViewById(R.id.passCodeTestView);
+        //passCodeTestView = findViewById(R.id.passCodeTestView);
 
         pin01 = findViewById(R.id.pin1);
         pin02 = findViewById(R.id.pin2);
@@ -304,8 +302,11 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     break;
 
                 case R.id.keyClear:
+                    pin01.getText().clear();
+                    pin02.getText().clear();
+                    pin03.getText().clear();
                     pin04.getText().clear();
-                    pin03.requestFocus();
+                    pin01.requestFocus();
                     break;
             }
         }
@@ -313,47 +314,16 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         switch (view.getId()) {
 
             case R.id.keyEnter:
-                //code for enter goes here
-
-                //Check if answer is correct
-
-                /*
-                boolean isPinCorrect = checkPassCodeInput();
-
-                Log.d("Enter Key", "Result: " + isPinCorrect);
-
-                int attemptCount = 5;
-
-                if (!isPinCorrect) {
-
-                    Toast.makeText(PlayActivity.this, "Wrong, Remaining attempts = " + attemptCount, Toast.LENGTH_SHORT).show();
-                    attemptCount--;
-
-                    if (attemptCount == 0) {
-
-                        displaFDialog();
-
-                    }
-
-                } else {
-
-                    displayDialog();
-
-                }
-                */
 
                 //Check if answer is correct
                 int[][] answerResultsArray = checkPassCodeInput();
                 String resultStatement = "";
 
-                //Log results and numbers
-                for(int resultCount = 0; resultCount < answerResultsArray.length; resultCount++)
-                {
+                for (int resultCount = 0; resultCount < answerResultsArray.length; resultCount++) {
 
                     String resultString = "";
 
-                    switch(answerResultsArray[0][resultCount])
-                    {
+                    switch (answerResultsArray[0][resultCount]) {
 
                         case 0:
 
@@ -379,7 +349,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
                 }
 
-                Toast.makeText(PlayActivity.this,resultStatement,Toast.LENGTH_LONG).show();
+                Toast.makeText(PlayActivity.this, resultStatement, Toast.LENGTH_LONG).show();
 
                 break;
 
@@ -387,62 +357,45 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-
-    //Compare answer to passcode
-    private int[][] checkPassCodeInput()
-    {
+    private int[][] checkPassCodeInput() {
 
         int[][] resultsArray = new int[pinEditTextArray.length][pinEditTextArray.length];
 
-        //Compare digits between the Pin Array and gamePassCode
-        //Results: 0 = Correct; 1 = Wrong; 2 = Occurs in passcode
-        for(int getResultsCount = 0; getResultsCount < pinEditTextArray.length; getResultsCount++)
-        {
+        for (int getResultsCount = 0; getResultsCount < pinEditTextArray.length; getResultsCount++) {
 
             int passCodeDigit = gamePassCode[getResultsCount];
             int resultState;
             int pinDigit = Integer.parseInt(pinEditTextArray[getResultsCount].getText().toString());
 
-            //Are the two digits different?
-            if(passCodeDigit != pinDigit)
-            {
+            if (passCodeDigit != pinDigit) {
 
                 resultState = 1;
 
-                //Check if the digit occurs in gamePassCode
-                for(int checkPassCodeCount = 0; checkPassCodeCount < gamePassCode.length; checkPassCodeCount++)
-                {
+                for (int checkPassCodeCount = 0; checkPassCodeCount < gamePassCode.length; checkPassCodeCount++) {
 
 
-                    if(pinDigit == gamePassCode[checkPassCodeCount])
-                    {
+                    if (pinDigit == gamePassCode[checkPassCodeCount]) {
 
                         resultState = 2;
 
                     }
                 }
-            }
-            else
-            {
+            } else {
 
                 resultState = 0;
 
             }
 
-            //Set Result
             resultsArray[0][getResultsCount] = resultState;
-            //Set Digit
+
             resultsArray[1][getResultsCount] = pinDigit;
 
         }
 
-        //Return results
         return resultsArray;
 
     }
 
-
-    //Failed Dialog Fragment
     private void displaFDialog() {
 
         Dialog dialog = new Dialog(PlayActivity.this);
@@ -474,7 +427,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
-    //Success Dialog Fragment
     private void displayDialog() {
 
         Dialog dialog = new Dialog(PlayActivity.this);
@@ -507,33 +459,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         dialog.show();
 
     }
-
-
-    /*
-    private boolean checkPassCodeInput() {
-
-        int checkPassCodeCount;
-        boolean isPassCodeCorrect = true;
-
-        pinEditTextArray = new EditText[]{pin01, pin02, pin03, pin04};
-
-        for (checkPassCodeCount = 0; checkPassCodeCount < pinEditTextArray.length; checkPassCodeCount++) {
-
-            int passCodeDigit = gamePassCode[checkPassCodeCount];
-            int pinDigit = Integer.parseInt(pinEditTextArray[checkPassCodeCount].getText().toString());
-
-            if (passCodeDigit != pinDigit) {
-
-                isPassCodeCorrect = false;
-
-            }
-        }
-
-        return isPassCodeCorrect;
-
-    }
-    */
-
 
     private void generatePassCode() {
 
@@ -586,9 +511,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
             while (isRepeatingDigit);
 
         }
-
-        passCodeTestView.setText(Arrays.toString(gamePassCode));
-
     }
 
 
@@ -596,7 +518,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
     protected void onStart() {
         super.onStart();
 
-        int thirty = 30;
+        int thirty = 25;
 
         if (thirty > 0) {
 
@@ -632,6 +554,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                         textViewTime.setText("0");
 
                         Toast.makeText(PlayActivity.this, "You Failed", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(PlayActivity.this, MainMenuActivity.class);
+                        PlayActivity.this.startActivity(intent);
 
                     } else {
 
