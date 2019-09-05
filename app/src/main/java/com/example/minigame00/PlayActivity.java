@@ -42,8 +42,6 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
         passCodeTestView = findViewById(R.id.passCodeTestView);
 
-        pinEditTextArray = new EditText[]{pin01, pin02, pin03, pin04};
-
         pin01 = findViewById(R.id.pin1);
         pin02 = findViewById(R.id.pin2);
         pin03 = findViewById(R.id.pin3);
@@ -104,6 +102,7 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         keyenter.setOnClickListener(this);
         keyclear.setOnClickListener(this);
 
+        pinEditTextArray = new EditText[]{pin01, pin02, pin03, pin04};
         generatePassCode();
 
     }
@@ -314,6 +313,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                 //code for enter goes here
 
                 //Check if answer is correct
+
+                /*
                 boolean isPinCorrect = checkPassCodeInput();
 
                 Log.d("Enter Key", "Result: " + isPinCorrect);
@@ -327,6 +328,46 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
                     Toast.makeText(PlayActivity.this,"Right Combination",Toast.LENGTH_SHORT).show();
 
                 }
+                */
+
+                //Check if answer is correct
+                int[][] answerResultsArray = checkPassCodeInput();
+                String resultStatement = "";
+
+                //Log results and numbers
+                for(int resultCount = 0; resultCount < answerResultsArray.length; resultCount++)
+                {
+
+                    String resultString = "";
+
+                    switch(answerResultsArray[0][resultCount])
+                    {
+
+                        case 0:
+
+                            resultString = "Correct";
+
+                            break;
+
+                        case 1:
+
+                            resultString = "Wrong Number";
+
+                            break;
+
+                        case 2:
+
+                            resultString = "Wrong Position";
+
+                            break;
+
+                    }
+
+                    resultStatement = resultStatement + "" + answerResultsArray[1][resultCount] + " : " + resultString + "\n";
+
+                }
+
+                Toast.makeText(PlayActivity.this,resultStatement,Toast.LENGTH_LONG).show();
 
                 break;
 
@@ -334,6 +375,60 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
 
     }
 
+    //Compare answer to passcode
+    private int[][] checkPassCodeInput()
+    {
+
+        int[][] resultsArray = new int[pinEditTextArray.length][pinEditTextArray.length];
+
+        //Compare digits between the Pin Array and gamePassCode
+        //Results: 0 = Correct; 1 = Wrong; 2 = Occurs in passcode
+        for(int getResultsCount = 0; getResultsCount < pinEditTextArray.length; getResultsCount++)
+        {
+
+            int passCodeDigit = gamePassCode[getResultsCount];
+            int resultState;
+            int pinDigit = Integer.parseInt(pinEditTextArray[getResultsCount].getText().toString());
+
+            //Are the two digits different?
+            if(passCodeDigit != pinDigit)
+            {
+
+                resultState = 1;
+
+                //Check if the digit occurs in gamePassCode
+                for(int checkPassCodeCount = 0; checkPassCodeCount < gamePassCode.length; checkPassCodeCount++)
+                {
+
+
+                    if(pinDigit == gamePassCode[checkPassCodeCount])
+                    {
+
+                        resultState = 2;
+
+                    }
+                }
+            }
+            else
+            {
+
+                resultState = 0;
+
+            }
+
+            //Set Result
+            resultsArray[0][getResultsCount] = resultState;
+            //Set Digit
+            resultsArray[1][getResultsCount] = pinDigit;
+
+        }
+
+        //Return results
+        return resultsArray;
+
+    }
+
+    /*
     private boolean checkPassCodeInput() {
 
         int checkPassCodeCount;
@@ -356,6 +451,8 @@ public class PlayActivity extends AppCompatActivity implements View.OnClickListe
         return isPassCodeCorrect;
 
     }
+    */
+
 
     private void generatePassCode() {
 
